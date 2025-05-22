@@ -30,6 +30,55 @@ document.addEventListener('DOMContentLoaded', () => {
             hachureAngle: 45
         });
 
+        // Calcular dimensiones base para Caperucita
+        const centerX = canvas.width / 2;
+        const groundY = canvas.height * 0.7; // Línea del suelo
+        const bodyRadius = Math.min(canvas.width, canvas.height) * 0.07; // Radio del cuerpo
+        const headRadius = bodyRadius * 0.8; // Radio de la cabeza (20% más pequeña que el cuerpo)
+        const basketSize = headRadius * 0.8; // Tamaño de la canasta (más pequeña que la cabeza)
+
+        // Dibujar el cuerpo (círculo rojo)
+        rc.circle(centerX, groundY - bodyRadius, bodyRadius * 2, {
+            fill: '#FF0000',
+            fillStyle: 'zigzag',
+            roughness: 1.5,
+            stroke: '#8B0000',
+            strokeWidth: 2,
+            hachureGap: 5
+        });
+
+        // Dibujar la cabeza (gota invertida roja)
+        const headBottom = groundY - bodyRadius * 2; // Justo donde termina el círculo
+        const headTop = headBottom - bodyRadius * 1.5; // Altura proporcional al cuerpo
+        const headPoints = [
+            [centerX - headRadius, headBottom],  // Base izquierda
+            [centerX + headRadius, headBottom],  // Base derecha
+            [centerX, headTop]                   // Punta superior
+        ];
+        rc.polygon(headPoints, {
+            fill: '#FF0000',
+            fillStyle: 'zigzag',
+            roughness: 1.5,
+            stroke: '#8B0000',
+            strokeWidth: 2,
+            hachureGap: 5
+        });
+
+        // Dibujar la canasta (cuadrado marrón)
+        rc.rectangle(
+            centerX + bodyRadius * 1.2,     // Posición X (un poco separada del cuerpo)
+            groundY - basketSize * 1.2,     // Posición Y (alineada con el cuerpo)
+            basketSize,                     // Ancho
+            basketSize,                     // Alto
+            {
+                fill: '#DEB887',
+                fillStyle: 'cross-hatch',
+                roughness: 2,
+                stroke: '#8B4513',
+                strokeWidth: 2
+            }
+        );
+
         // Dibujar el título
         const fontSize = canvas.width * 0.05;
         ctx.font = `${fontSize}px Arial`;
