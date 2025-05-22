@@ -64,6 +64,41 @@ document.addEventListener('DOMContentLoaded', () => {
             hachureGap: 5
         });
 
+        // Dibujar la cara (círculo color piel)
+        const faceRadius = headRadius * 0.6; // Radio de la cara proporcionado al tamaño de la cabeza
+        const faceY = headBottom - faceRadius; // Posición Y de la cara (justo en la base del triángulo)
+        rc.circle(centerX, faceY, faceRadius * 2, {
+            fill: '#FFE0BD', // Color piel
+            fillStyle: 'solid',
+            roughness: 1.5,
+            stroke: '#DEB887',
+            strokeWidth: 1
+        });
+
+        // Dibujar los ojos
+        const eyeRadius = faceRadius * 0.2; // Radio de los ojos
+        const eyeOffset = faceRadius * 0.4; // Distancia desde el centro de la cara
+        
+        // Ojo izquierdo
+        rc.circle(centerX - eyeOffset, faceY, eyeRadius * 2, {
+            fill: '#000000',
+            fillStyle: 'zigzag',
+            roughness: 1,
+            stroke: '#000000',
+            strokeWidth: 1,
+            hachureGap: 2
+        });
+
+        // Ojo derecho
+        rc.circle(centerX + eyeOffset, faceY, eyeRadius * 2, {
+            fill: '#000000',
+            fillStyle: 'zigzag',
+            roughness: 1,
+            stroke: '#000000',
+            strokeWidth: 1,
+            hachureGap: 2
+        });
+
         // Dibujar la canasta (cuadrado marrón)
         rc.rectangle(
             centerX + bodyRadius * 1.2,     // Posición X (un poco separada del cuerpo)
