@@ -17,3 +17,14 @@ canvas {
     width: 100vw;
     height: 100vh;
 }
+
+.title {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #8B0000;
+    font-family: Arial, sans-serif;
+    font-size: 5vw;
+    z-index: 1;
+}
